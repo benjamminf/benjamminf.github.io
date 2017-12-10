@@ -1,0 +1,50 @@
+$sl-generate: false;
+$sl-generate-normalize: true;
+$sl-generate-base: true;
+
+$sl-font-size: 16px;
+$sl-max-width: 1400px;
+
+$sl-gutters: (
+	'us': 6px,
+	'xs': 12px,
+	'sm': 24px,
+	'md': 48px,
+	'lg': 72px,
+	'xl': 96px,
+);
+
+$sl-breakpoints: (
+	'mob': 0px,
+	'tab': 640px,
+	'dsk': 1080px,
+	'max': $sl-max-width,
+);
+
+$sl-colors: (
+	'black': #000000,
+	'dark': #000000,
+	'mid': #666666,
+	'light': #f6f6f6,
+	'white': #ffffff,
+	'primary': #00fbd1,
+	'secondary': #fffa2a,
+	'tertiary': #d867ff,
+);
+
+$sl-fonts: (
+	'primary': 'europa' sans-serif,
+);
+
+$sl-font-weights: (
+	'primary': (
+		'light': 300,
+		'regular': 400,
+		'bold': 700,
+	)
+);
+
+$sl-transitions: (
+	'primary': 0.3s,
+	'secondary': 0.6s,
+);

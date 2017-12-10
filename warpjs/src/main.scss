@@ -1,0 +1,62 @@
+@import 'shared/settings';
+
+@import '~starlight/scss/starlight';
+@import '~starlight/scss/starlight-unprefixed';
+
+@import 'shared/typography';
+
+html,
+body {
+	overflow-x: hidden !important;
+}
+
+html {
+	background-color: color('white');
+	color: color('black');
+}
+
+body {
+	@include p1(
+		$font-size: $sl-font-size,
+		$line-height: 1
+	);
+}
+
+h1, h2, h3,
+h4, h5, h6,
+p, ul, ol,
+blockquote {
+	margin: 0;
+}
+
+cite,
+address {
+	font-style: inherit;
+}
+
+iframe {
+	border: 0;
+}
+
+a,
+button {
+
+	&:focus {
+		outline: 2px solid color('primary', 0.5);
+	}
+
+	&:active {
+		outline: 0;
+	}
+}
+
+a {
+	color: inherit;
+	text-decoration: inherit;
+}
+
+::selection {
+	background-color: color('mid', 0.2);
+}
+
+@import 'hero/style';

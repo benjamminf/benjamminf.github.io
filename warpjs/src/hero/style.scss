@@ -1,0 +1,113 @@
+.hero {
+	display: flex;
+	height: 100vh;
+	align-items: center;
+	justify-content: center;
+
+	&_cursor {
+		pointer-events: none;
+		position: absolute;
+		top: 0;
+		left: 0;
+		margin-top: -0.5em;
+		margin-left: -0.5em;
+		width: 1em;
+		height: 1em;
+		border-radius: 50%;
+		background: radial-gradient(closest-side, color('black', 0.2) 0%, color('black', 0) 100%);
+		transition: transition('primary', opacity);
+
+		@include parameter('hidden') {
+			opacity: 0;
+		}
+	}
+
+	&_content {
+		width: 100%;
+		max-width: 310px;
+		text-align: center;
+	}
+
+	&_logo {
+		@include sl-extend-tags(svg) {
+			overflow: visible;
+		}
+
+		&_circle,
+		&_triangle,
+		&_square {
+			mix-blend-mode: multiply;
+		}
+
+		&_circle {
+			fill: color('primary');
+		}
+
+		&_triangle {
+			fill: color('secondary');
+		}
+
+		&_square {
+			fill: color('tertiary');
+		}
+	}
+
+	&_title {
+		@include h1;
+
+		margin-top: gutter('sm');
+		color: color('black');
+
+		&_warp {
+			font-weight: font-weight('primary', 'bold');
+		}
+
+		&_js {
+			font-weight: font-weight('primary', 'light');
+		}
+	}
+
+	&_tagline {
+		@include p1;
+
+		margin-top: gutter('sm');
+		color: color('mid');
+	}
+
+	&_button {
+		@include h6(
+			$font-size: false,
+			$line-height: false
+		);
+		@include button(
+			$font-size: em(15px),
+			$padding: 18px 30px
+		);
+
+		margin-top: gutter('md');
+		border-radius: 9999px;
+		background: color('black') linear-gradient(60deg,
+			color('secondary') 0%,
+			color('secondary') 33.33%,
+			color('primary') 44.44%,
+			color('tertiary') 55.55%,
+			color('black') 66.66%,
+			color('black') 100%
+		);
+		background-size: ((100 / 30) * 100% + 1%) 100%;
+		background-position-x: 100%;
+		color: color('white');
+		transition-delay: 0s, 0.2s, 0s;
+		transition:
+			transition('primary', box-shadow transform),
+			transition('primary', color),
+			transition('secondary', background-position-x);
+
+		&:hover {
+			background-position-x: 0;
+			color: color('black');
+			box-shadow: 0 3px 10px color('black', 0.2);
+			transform: translateY(-2px);
+		}
+	}
+}

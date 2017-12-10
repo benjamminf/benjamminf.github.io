@@ -1,0 +1,154 @@
+@mixin h1(
+	$font: font('primary'),
+	$font-weight: font-weight('primary', 'bold'),
+	$font-size: (
+		'mob': em(30px),
+		'tab': em(42px),
+		'dsk': em(64px),
+	),
+	$line-height: (
+		'mob': decimal(34px, 30px),
+		'tab': decimal(44px, 42px),
+		'dsk': decimal(64px, 64px),
+	),
+	$letter-spacing: 0,
+	$text-transform: none
+) {
+	@include properties((
+		font-family: $font,
+		font-weight: $font-weight,
+		font-size: $font-size,
+		line-height: $line-height,
+		letter-spacing: $letter-spacing,
+		text-transform: $text-transform,
+	));
+}
+
+@mixin h2(
+	$font: font('primary'),
+	$font-weight: font-weight('primary', 'light'),
+	$font-size: (
+		'mob': em(30px),
+		'tab': em(35px),
+		'dsk': em(40px),
+	),
+	$line-height: (
+		'mob': decimal(36px, 30px),
+		'tab': decimal(42px, 35px),
+		'dsk': decimal(48px, 40px),
+	),
+	$letter-spacing: (
+		'mob': 0,
+		'dsk': em(-1px, 50px),
+	),
+	$text-transform: none
+) {
+	@include properties((
+		font-family: $font,
+		font-weight: $font-weight,
+		font-size: $font-size,
+		line-height: $line-height,
+		letter-spacing: $letter-spacing,
+		text-transform: $text-transform,
+	));
+}
+
+@mixin h3(
+	$font: font('primary'),
+	$font-weight: font-weight('primary', 'bold'),
+	$font-size: em(26px),
+	$line-height: decimal(34px, 26px),
+	$letter-spacing: 0,
+	$text-transform: none
+) {
+	@include properties((
+		font-family: $font,
+		font-weight: $font-weight,
+		font-size: $font-size,
+		line-height: $line-height,
+		letter-spacing: $letter-spacing,
+		text-transform: $text-transform,
+	));
+}
+
+@mixin h4(
+	$font: font('primary'),
+	$font-weight: font-weight('primary', 'bold'),
+	$font-size: em(14px),
+	$line-height: decimal(24px, 14px),
+	$letter-spacing: (
+		'mob': 0,
+		'tab': em(2px, 14px),
+		'dsk': em(4px, 14px),
+	),
+	$text-transform: uppercase
+) {
+	@include properties((
+		font-family: $font,
+		font-weight: $font-weight,
+		font-size: $font-size,
+		line-height: $line-height,
+		letter-spacing: $letter-spacing,
+		text-transform: $text-transform,
+	));
+}
+
+@mixin h5(
+	$font: font('primary'),
+	$font-weight: font-weight('primary', 'regular'),
+	$font-size: em(20px),
+	$line-height: decimal(28px, 20px),
+	$letter-spacing: 0,
+	$text-transform: none
+) {
+	@include properties((
+		font-family: $font,
+		font-weight: $font-weight,
+		font-size: $font-size,
+		line-height: $line-height,
+		letter-spacing: $letter-spacing,
+		text-transform: $text-transform,
+	));
+}
+
+@mixin h6(
+	$font: font('primary'),
+	$font-weight: font-weight('primary', 'bold'),
+	$font-size: em(15px),
+	$line-height: decimal(24px, 15px),
+	$letter-spacing: em(3px, 15px),
+	$text-transform: uppercase
+) {
+	@include properties((
+		font-family: $font,
+		font-weight: $font-weight,
+		font-size: $font-size,
+		line-height: $line-height,
+		letter-spacing: $letter-spacing,
+		text-transform: $text-transform,
+	));
+}
+
+@mixin p1(
+	$font: font('primary'),
+	$font-weight: font-weight('primary', 'regular'),
+	$font-size: (
+		'mob': em(16px),
+		'tab': em(20px),
+	),
+	$line-height: (
+		'mob': decimal(24px, 16px),
+		'tab': decimal(30px, 20px),
+	),
+	$letter-spacing: 0,
+	$text-transform: none
+) {
+	@include properties((
+		font-family: $font,
+		font-weight: $font-weight,
+		font-size: $font-size,
+		line-height: $line-height,
+		letter-spacing: $letter-spacing,
+		text-transform: $text-transform,
+	));
+}
