@@ -3,6 +3,14 @@
 	height: 100vh;
 	align-items: center;
 	justify-content: center;
+	opacity: 0;
+	transition: transition('tertiary', opacity);
+	transition-delay: 0.25s;
+
+	html.wf-inactive &,
+	html.wf-active & {
+		opacity: 1;
+	}
 
 	&_cursor {
 		pointer-events: none;
@@ -41,14 +49,49 @@
 
 		&_circle {
 			fill: color('primary');
+			transform: translate(-10px, 4px);
+			transition: transition('tertiary', transform);
+			transition-delay: 0.25s;
+
+			html.wf-inactive &,
+			html.wf-active & {
+				transform: none;
+			}
 		}
 
 		&_triangle {
 			fill: color('secondary');
+			transform: translate(10px, 4px);
+			transition: transition('tertiary', transform);
+			transition-delay: 0.25s;
+
+			html.wf-inactive &,
+			html.wf-active & {
+				transform: none;
+			}
 		}
 
 		&_square {
 			fill: color('tertiary');
+			transform: translate(4px, -10px);
+			transition: transition('tertiary', transform);
+			transition-delay: 0.25s;
+
+			html.wf-inactive &,
+			html.wf-active & {
+				transform: none;
+			}
+		}
+	}
+
+	&_text {
+		transform: translateY(10px);
+		transition: transition('tertiary', transform);
+		transition-delay: 0.25s;
+
+		html.wf-inactive &,
+		html.wf-active & {
+			transform: none;
 		}
 	}
 
