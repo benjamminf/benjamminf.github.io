@@ -2,13 +2,13 @@
 	$font: font('primary'),
 	$font-weight: font-weight('primary', 'bold'),
 	$font-size: (
-		'mob': em(30px),
-		'tab': em(42px),
+		'mob': em(36px),
+		'tab': em(48px),
 		'dsk': em(64px),
 	),
 	$line-height: (
-		'mob': decimal(34px, 30px),
-		'tab': decimal(44px, 42px),
+		'mob': decimal(36px, 36px),
+		'tab': decimal(48px, 48px),
 		'dsk': decimal(64px, 64px),
 	),
 	$letter-spacing: 0,

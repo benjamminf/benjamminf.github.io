@@ -83,8 +83,11 @@
 			$font-size: em(15px),
 			$padding: 18px 30px
 		);
-
-		margin-top: gutter('md');
+		@include responsive((
+			'mob': (margin-top: gutter('sm')),
+			'tab': (margin-top: gutter('md')),
+		));
+		
 		border-radius: 9999px;
 		background: color('black') linear-gradient(60deg,
 			color('secondary') 0%,

@@ -1,6 +1,7 @@
 const webpack = require('webpack')
 const path = require('path')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
+const HtmlWebpackInlineSourcePlugin = require('html-webpack-inline-source-plugin')
 
 module.exports = {
 	devtool: 'source-map',
@@ -16,7 +17,9 @@ module.exports = {
 		}),
 		new HtmlWebpackPlugin({
 			template: path.resolve(__dirname, '../src/index.html'),
+			inlineSource: '.(js|css)$',
 		}),
+		new HtmlWebpackInlineSourcePlugin(),
 	],
 	module: {
 		rules: [

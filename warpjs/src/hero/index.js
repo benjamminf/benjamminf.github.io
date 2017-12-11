@@ -1,4 +1,4 @@
-import Warp from 'warpjs/src/Warp'
+import Warp from 'warpjs'
 
 const $hero = document.getElementById('hero')
 const $cursor = document.getElementById('hero-cursor')
@@ -12,13 +12,13 @@ let mouseY = 0
 let lastMouseX = 0
 let lastMouseY = 0
 
-window.addEventListener('mousemove', function(e)
+window.addEventListener('mousemove', (e) => requestAnimationFrame(() =>
 {
 	lastMouseX = mouseX
 	lastMouseY = mouseY
 	mouseX = e.clientX
 	mouseY = e.clientY
-})
+}))
 
 window.addEventListener('mouseover', function(e)
 {
@@ -58,17 +58,17 @@ function smudgeFactory(startX, startY, endX, endY, radius, strength)
 }
 
 const warp = new Warp($logo)
-warp.interpolate(3)
+warp.interpolate(10)
 
 window.addEventListener('mousemove', () => requestAnimationFrame(() =>
 {
 	const origin = $logo.getBoundingClientRect()
 
 	warp.transform(smudgeFactory(
-		lastMouseX - origin.x,
-		lastMouseY - origin.y,
-		mouseX - origin.x,
-		mouseY - origin.y,
+		lastMouseX - origin.left,
+		lastMouseY - origin.top,
+		mouseX - origin.left,
+		mouseY - origin.top,
 		smudgeRadius,
 		smudgeStrength
 	))
