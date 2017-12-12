@@ -9,8 +9,8 @@ const smudgeStrength = 0.33
 
 let mouseX = 0
 let mouseY = 0
-let lastMouseX = 0
-let lastMouseY = 0
+let lastMouseX = null
+let lastMouseY = null
 
 window.addEventListener('mousemove', (e) => requestAnimationFrame(() =>
 {
@@ -18,12 +18,60 @@ window.addEventListener('mousemove', (e) => requestAnimationFrame(() =>
 	lastMouseY = mouseY
 	mouseX = e.clientX
 	mouseY = e.clientY
+
+	$cursor.classList.remove('-hidden')
 }))
 
 window.addEventListener('mouseover', function(e)
 {
 	const hideCursor = (e.target.tagName.toLowerCase() === 'a')
 	$cursor.classList.toggle('-hidden', hideCursor)
+})
+
+let touchPoints = {}
+
+window.addEventListener('touchstart', function(e)
+{
+	Array.from(e.changedTouches).forEach(touch =>
+	{
+		touchPoints[touch.identifier] = {
+			lastX: touch.clientX,
+			lastY: touch.clientY,
+			x: touch.clientX,
+			y: touch.clientY,
+		}
+	})
+})
+
+window.addEventListener('touchmove', (e) => requestAnimationFrame(() =>
+{
+	Array.from(e.changedTouches).forEach(touch =>
+	{
+		const touchPoint = touchPoints[touch.identifier]
+		if (touchPoint)
+		{
+			touchPoint.lastX = touchPoint.x
+			touchPoint.lastY = touchPoint.y
+			touchPoint.x = touch.clientX
+			touchPoint.y = touch.clientY
+		}
+	})
+}))
+
+window.addEventListener('touchend', function(e)
+{
+	Array.from(e.changedTouches).forEach(touch =>
+	{
+		delete touchPoints[touch.identifier]
+	})
+})
+
+window.addEventListener('touchcancel', function(e)
+{
+	Array.from(e.changedTouches).forEach(touch =>
+	{
+		delete touchPoints[touch.identifier]
+	})
 })
 
 function positionCursor()
@@ -60,16 +108,43 @@ function smudgeFactory(startX, startY, endX, endY, radius, strength)
 const warp = new Warp($logo)
 warp.interpolate(10)
 
-window.addEventListener('mousemove', () => requestAnimationFrame(() =>
+let enableMouseWarp = true
+window.addEventListener('mousemove', () =>
+	enableMouseWarp &&
+	lastMouseX !== null &&
+	lastMouseY !== null &&
+	requestAnimationFrame(() =>
+	{
+		const origin = $logo.getBoundingClientRect()
+
+		warp.transform(smudgeFactory(
+			lastMouseX - origin.left,
+			lastMouseY - origin.top,
+			mouseX - origin.left,
+			mouseY - origin.top,
+			smudgeRadius,
+			smudgeStrength
+		))
+	})
+)
+
+window.addEventListener('touchstart', () => enableMouseWarp = false)
+window.addEventListener('touchend', () => enableMouseWarp = true)
+window.addEventListener('touchcancel', () => enableMouseWarp = true)
+
+window.addEventListener('touchmove', () => requestAnimationFrame(() =>
 {
 	const origin = $logo.getBoundingClientRect()
 
-	warp.transform(smudgeFactory(
-		lastMouseX - origin.left,
-		lastMouseY - origin.top,
-		mouseX - origin.left,
-		mouseY - origin.top,
-		smudgeRadius,
-		smudgeStrength
-	))
+	Object.values(touchPoints).forEach(({ lastX, lastY, x, y }) =>
+	{
+		warp.transform(smudgeFactory(
+			lastX - origin.left,
+			lastY - origin.top,
+			x - origin.left,
+			y - origin.top,
+			smudgeRadius,
+			smudgeStrength
+		))
+	})
 }))
