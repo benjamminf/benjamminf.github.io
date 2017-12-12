@@ -14,12 +14,15 @@ let lastMouseY = null
 
 window.addEventListener('mousemove', (e) => requestAnimationFrame(() =>
 {
+	if (lastMouseX === null || lastMouseY === null)
+	{
+		$cursor.classList.remove('-hidden')
+	}
+	
 	lastMouseX = mouseX
 	lastMouseY = mouseY
 	mouseX = e.clientX
 	mouseY = e.clientY
-
-	$cursor.classList.remove('-hidden')
 }))
 
 window.addEventListener('mouseover', function(e)
